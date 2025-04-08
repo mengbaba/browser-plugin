@@ -1,0 +1,57 @@
+{
+    "manifest_version": 3,
+    "name": "myBasicPlugin",
+    "version": "1.0.0",
+    "description": "A basic example plugin",
+    "background": {
+        "service_worker": "workers/main.js",
+        "type": "module"
+    },
+    "permissions": [
+        "alarms",
+        "tabs",
+        "scripting",
+        "history",
+        "sidePanel",
+        "scripting",
+        "activeTab",
+        "storage",
+        "contextMenus",
+        "cookies",
+        "tabGroups"
+    ],
+    "minimum_chrome_version": "102",
+    "omnibox": {
+        "keyword": "api"
+    },
+    "host_permissions": [
+        "https://*/*",
+        "https://chrome.dev/f/*"
+    ],
+    "content_scripts": [
+        {
+            "matches": [
+                "*://www.baidu.com/*",
+                "https://developer.chrome.com/docs/extensions/reference/*"
+            ],
+            "js": [
+                "content_scripts/content.js"
+            ],
+            "all_frames": true,
+            "css": []
+        }
+    ],
+    "chrome_url_overrides": {
+        "newtab": "pages/overrides/index.html"
+    },
+    "side_panel": {
+        "default_path": "pages/sidepanel/index.html"
+    },
+    "options_ui": {
+        "page": "pages/options/index.html",
+        "open_in_tab": false
+    },
+    "action": {
+        "default_popup": "pages/popup/index.html"
+    }
+}
