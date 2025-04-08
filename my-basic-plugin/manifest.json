@@ -10,15 +10,16 @@
     "permissions": [
         "alarms",
         "tabs",
+        "offscreen",
         "scripting",
         "history",
         "sidePanel",
-        "scripting",
         "activeTab",
         "storage",
         "contextMenus",
         "cookies",
-        "tabGroups"
+        "tabGroups",
+        "clipboardWrite"
     ],
     "minimum_chrome_version": "102",
     "omnibox": {
@@ -51,7 +52,5 @@
         "page": "pages/options/index.html",
         "open_in_tab": false
     },
-    "action": {
-        "default_popup": "pages/popup/index.html"
-    }
+    "action": {}
 }
