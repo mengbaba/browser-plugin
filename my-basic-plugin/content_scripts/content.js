@@ -1,22 +1,26 @@
-(async () => {
-    // Sends a message to the service worker and receives a tip in response
-    const { tip } = await chrome.runtime.sendMessage({ greeting: 'tip' });
-    const nav = document.querySelector('.upper-tabs > nav');
-    const tipWidget = createDomElement(`
-      <button type="button" popovertarget="tip-popover" popovertargetaction="show" style="padding: 0 12px; height: 36px;">
-        <span style="display: block; font: var(--devsite-link-font,500 14px/20px var(--devsite-primary-font-family));">Tip</span>
-      </button>
-    `);
+window.addEventListener("message", function (msg) {
+  console.log(msg)
+}, false)
 
-    const popover = createDomElement(
-        `<div id='tip-popover' popover style="margin: auto;">${tip}</div>`
-    );
-
-    document.body.append(popover);
-    nav.append(tipWidget);
-})();
-
-function createDomElement(html) {
-    const dom = new DOMParser().parseFromString(html, 'text/html');
-    return dom.body.firstElementChild;
+function createElement(tagName, path, attributeOptions, callback) {
+  const element = document.createElement(tagName)
+  for (const key in attributeOptions) {
+    if (Object.prototype.hasOwnProperty.call(attributeOptions, key)) {
+      element.setAttribute(key, attributeOptions[key])
+    }
+  }
+  const url = chrome.runtime.getURL(path)
+  element.onload = function () {
+    this.parentNode.removeChild(this)
+  }
+  callback && callback(element, url)
+  console.log('element', element)
+  return element
 }
+
+
+createElement('script', "content_scripts/inject.js", { type: 'text/javascript' }, (tag, url) => {
+  tag.src = url
+  document.head.appendChild(tag)
+})
+

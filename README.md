@@ -41,6 +41,26 @@
     }
 ```
 
+### offscreen 屏幕外页面
+worker.js chrome.offscreen.createDocument 创建
+```ts
+  chrome.runtime.onInstalled.addListener(async () => {
+    await chrome.offscreen.createDocument({
+        url: offScreenPath,
+        reasons: [chrome.offscreen.Reason.CLIPBOARD],
+        justification: 'reason for needing the document',
+    });
+
+    chrome.runtime.sendMessage({
+        type: 'copy',
+        target: 'offscreen',
+        data: '111111'
+    });
+});
+```
+
+
+
 ## 权限
 ### permissions
 配置要操作的权限,某些权限会触发警告
