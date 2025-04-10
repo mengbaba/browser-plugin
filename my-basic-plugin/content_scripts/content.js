@@ -24,3 +24,7 @@ createElement('script', "content_scripts/inject.js", { type: 'text/javascript' }
   document.head.appendChild(tag)
 })
 
+
+chrome.runtime.onMessage.addListener((message) => {
+  console.log('content 接受service msg', message)
+})

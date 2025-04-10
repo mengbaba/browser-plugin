@@ -9,3 +9,30 @@
     z-index: 9999;
     border-radius: 50%;
 }
+
+.glass-scope {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.glass-cursor {
+    display: block;
+    position: absolute;
+    cursor: none;
+    outline: none;
+    pointer-events: none;
+    image-rendering: auto;
+    width: 180px;
+    height: 180px;
+    background-color: rgba(0, 0, 0, 0.0);
+    border-radius: 50%;
+    transform: scale(2);
+    box-shadow: rgba(255, 255, 255, 0.85) 0px 0px 0px 3.5px, rgba(0, 0, 0, 0.25) 0px 0px 3.5px 3.5px, rgba(0, 0, 0, 0.25) 0px 0px 20px 1px inset;
+}

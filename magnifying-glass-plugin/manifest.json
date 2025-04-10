@@ -2,11 +2,23 @@
     "manifest_version": 3,
     "name": "Magnifying Glass",
     "version": "1.0.0",
-    "description": "A  browser magnifying glass plugin3333",
-    "action": {},
+    "description": "A  browser magnifying glass plugin",
+    "action": {
+        "default_icon": "src/assets/g.png"
+    },
+    "icons": {
+        "128": "src/assets/g.png",
+        "16": "src/assets/g.png",
+        "32": "src/assets/g.png"
+    },
     "background": {
         "service_worker": "src/background/service-worker.ts"
     },
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "storage"
+    ],
     "host_permissions": [
         "<all_urls>"
     ],
