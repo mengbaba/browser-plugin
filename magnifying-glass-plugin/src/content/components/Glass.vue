@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref,onMounted,nextTick, onUnmounted,defineEmits,  watch  } from 'vue';
+import { ref,onMounted,nextTick, onUnmounted,  watch  } from 'vue';
 import html2canvas from 'html2canvas';
 interface Props {
     cursorY:number

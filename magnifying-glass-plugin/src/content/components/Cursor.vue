@@ -49,7 +49,7 @@ onMounted(async()=>{
 </script>
 
 <template>
-  <div :class="{'cursor':isShow}" ref="cursorEl">
+  <div :class="{'cursor':isShow,}" ref="cursorEl">
   </div>
 </template>
 

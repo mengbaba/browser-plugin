@@ -27,4 +27,6 @@ onMounted(async()=>{
     <Glass v-else @close="isShow = false" :cursor-x="cursorX" :cursor-y="cursorY"></Glass>
 </template>
 
-<style scoped></style>
+<style scoped>
+/* @import "./inject.css"; */
+</style>

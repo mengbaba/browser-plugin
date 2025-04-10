@@ -4,15 +4,23 @@ import Unocss from 'unocss/vite'
 import { crx } from '@crxjs/vite-plugin'
 import { fileURLToPath } from 'node:url'
 import manifest from './manifest.json' assert {type: 'json'}
-// https://vite.dev/config/
 export default defineConfig({
   legacy: {
     skipWebSocketTokenCheck: true
   },
-  plugins: [vue(), Unocss({}), crx({ manifest })],
+  plugins: [vue(), Unocss({}), crx({ manifest, contentScripts: { injectCss: true } })],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        chunkFileNames: 'assets/[name].js',
+        entryFileNames: 'assets/[name].js',
+        assetFileNames: 'assets/[name].[ext]'
+      }
     },
   },
 })

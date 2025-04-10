@@ -17,7 +17,8 @@
     "permissions": [
         "tabs",
         "activeTab",
-        "storage"
+        "storage",
+        "scripting"
     ],
     "host_permissions": [
         "<all_urls>"
@@ -30,10 +31,11 @@
             "js": [
                 "src/content/content.ts"
             ],
-            "all_frames": true,
             "css": [
                 "src/content/inject.css"
-            ]
+            ],
+            "all_frames": true,
+            "run_at": "document_idle"
         }
     ],
     "web_accessible_resources": [
