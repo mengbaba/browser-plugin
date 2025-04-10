@@ -1,8 +1,8 @@
 {
     "manifest_version": 3,
-    "name": "Magnifying Glass",
+    "name": "Follow And Magnifying",
     "version": "1.0.0",
-    "description": "A  browser magnifying glass plugin",
+    "description": "A  browser mouse follow and magnifying glass plugin",
     "action": {
         "default_icon": "src/assets/g.png"
     },
