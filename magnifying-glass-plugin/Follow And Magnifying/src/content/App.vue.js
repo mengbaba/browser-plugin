@@ -2,6 +2,7 @@ import { createHotContext as __vite__createHotContext } from "/vendor/vite-clien
 import { nextTick, onMounted, ref } from "/vendor/.vite-deps-vue.js__v--39ec6ed7.js";
 import Cursor from "/src/content/components/Cursor.vue.js";
 import Glass from "/src/content/components/Glass.vue.js";
+import storage from "/src/utils/storage.ts.js";
 const _sfc_main = /* @__PURE__ */ _defineComponent({
   __name: "App",
   setup(__props, { expose: __expose }) {
@@ -14,14 +15,20 @@ const _sfc_main = /* @__PURE__ */ _defineComponent({
       if (message.type === "operationPlugin") {
         isShow.value = !isShow.value;
       } else {
-        console.log("\u53F3\u952E\u5207\u6362\u989C\u8272");
-        cursorBgColor.value = message.type;
+        getFollowColor();
       }
-      return;
+      return void 0;
     }
     chrome.runtime.onMessage.addListener(handleMessage);
+    async function getFollowColor() {
+      const res = await storage.get("followColor");
+      if (res?.followColor) {
+        cursorBgColor.value = res.followColor;
+      }
+    }
     onMounted(async () => {
       await nextTick();
+      getFollowColor();
       document.addEventListener("mousemove", (event) => {
         cursorY.value = event.clientY;
         cursorX.value = event.clientX;
@@ -30,7 +37,7 @@ const _sfc_main = /* @__PURE__ */ _defineComponent({
         isShow.value = false;
       });
     });
-    const __returned__ = { isShow, cursorBgColor, cursorY, cursorX, handleMessage, Cursor, Glass };
+    const __returned__ = { isShow, cursorBgColor, cursorY, cursorX, handleMessage, getFollowColor, Cursor, Glass };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
