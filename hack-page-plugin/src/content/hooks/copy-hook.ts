@@ -29,7 +29,7 @@ function hackReplaceEl(hackTag: string, replaceTag: string) {
     if (hackT?.length > 0) {
         hackT.forEach((item) => {
             const rT = document.createElement(replaceTag);
-            rT.classList = `hack-${replaceTag}`
+            rT.className = `hack-${replaceTag}`
             rT.innerHTML = item.innerHTML;
             item.parentNode?.replaceChild(rT, item);
         })
@@ -38,30 +38,25 @@ function hackReplaceEl(hackTag: string, replaceTag: string) {
 
 
 import { useTextSelection } from '@vueuse/core'
-import { nextTick, onMounted, watch } from 'vue';
+import { nextTick, onMounted, ref, watch, type WatchHandle } from 'vue';
 export function useHackCopy() {
     const select = useTextSelection()
+    const stop = ref<WatchHandle | null>(null)
     onMounted(async () => {
         await nextTick()
-
-        const stop = watch(() => select.text.value, (text) => {
-            console.log(text)
-            copyTextToClipboard(text)
-        })
-
         chrome.runtime.onMessage.addListener((message: any) => {
             console.log('开启hack')
             if (message.type) {
                 console.log('初始化监听器')
-                // document.addEventListener('keydown', handleKeyDown);
-                // document.addEventListener('copy', handleCopy);
+                stop.value = watch(() => select.text.value, (text) => {
+                    console.log(text)
+                    copyTextToClipboard(text)
+                })
                 hackReplaceEl('pre', 'div')
             } else {
                 console.log('关闭脚本')
-                // document.removeEventListener('keydown', handleKeyDown)
-                // document.removeEventListener('copy', handleCopy);
                 hackReplaceEl('.hack-div', 'pre')
-                stop()
+                stop.value && stop.value()
             }
             return true
         })
