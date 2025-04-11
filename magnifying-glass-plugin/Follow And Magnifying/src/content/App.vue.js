@@ -22,6 +22,9 @@ const _sfc_main = /* @__PURE__ */ _defineComponent({
         cursorY.value = event.clientY;
         cursorX.value = event.clientX;
       });
+      document.addEventListener("keydown", () => {
+        isShow.value = false;
+      });
     });
     const __returned__ = { isShow, cursorY, cursorX, handleMessage, Cursor, Glass };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });

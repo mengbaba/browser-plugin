@@ -19,6 +19,10 @@ onMounted(async()=>{
             cursorY.value =  event.clientY
             cursorX.value = event.clientX
         })
+
+        document.addEventListener('keydown',()=>{
+            isShow.value = false
+        })
     })
 </script>
 
