@@ -23,6 +23,14 @@
     "host_permissions": [
         "<all_urls>"
     ],
+    "commands": {
+        "clickPlugin": {
+            "suggested_key": {
+                "default": "Ctrl+B"
+            },
+            "description": "Activate the plugin"
+        }
+    },
     "content_scripts": [
         {
             "matches": [

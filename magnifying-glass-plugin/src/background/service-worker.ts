@@ -8,25 +8,7 @@ console.log('worker load')
 //     console.log('浏览器启动时')
 // });
 
-// 注入脚本到所有打开的标签页
-// function injectScriptToAllTabs() {
-
-//     chrome.tabs.query({}, (tabs) => {
-//         tabs.forEach((tab) => {
-
-//             // 通过 scripting API 向每个标签页注入 content.js 脚本
-//             if (tab.id) {
-//                 chrome.scripting.executeScript({
-//                     target: { tabId: tab.id },
-//                     files: ['src/content/content.ts'] // 指定要注入的脚本
-//                 });
-//             }
-//         });
-//     });
-
-// }
-
-// 监听标签页切换事件
+// 监听标签页切换事件 注入脚本
 chrome.tabs.onActivated.addListener((activeInfo) => {
     // 使用 tabId 获取标签页信息
     chrome.tabs.get(activeInfo.tabId, (tab) => {
@@ -40,10 +22,16 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
     });
 });
 
-chrome.action.onClicked.addListener(() => {
-    console.log('点击了插件')
+// 快捷键唤醒插件
+chrome.commands.onCommand.addListener((command) => {
     chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        console.log('tabs详情', tabs)
+        chrome.tabs.sendMessage(Number(tabs[0].id), { type: command })
+    })
+})
+
+// 点击插件唤醒
+chrome.action.onClicked.addListener(() => {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         chrome.tabs.sendMessage(Number(tabs[0].id), { type: 'clickPlugin' })
     })
 })
