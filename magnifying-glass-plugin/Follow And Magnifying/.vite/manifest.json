@@ -9,17 +9,27 @@
     "file": "assets/content.ts-loader.js",
     "src": "_content.ts-loader.js"
   },
+  "_storage.js": {
+    "file": "assets/storage.js",
+    "name": "storage"
+  },
   "src/background/service-worker.ts": {
     "file": "assets/service-worker.ts.js",
     "name": "service-worker.ts",
     "src": "src/background/service-worker.ts",
-    "isEntry": true
+    "isEntry": true,
+    "imports": [
+      "_storage.js"
+    ]
   },
   "src/content/content.ts": {
     "file": "assets/content.ts.js",
     "name": "content.ts",
     "src": "src/content/content.ts",
     "isEntry": true,
+    "imports": [
+      "_storage.js"
+    ],
     "css": [
       "assets/content.css"
     ]

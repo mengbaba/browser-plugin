@@ -44,5 +44,5 @@ onMounted(async()=>{
 </template>
 
 <style scoped>
-/* @import "./inject.css"; */
+
 </style>

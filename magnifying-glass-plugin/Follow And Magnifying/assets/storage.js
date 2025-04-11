@@ -1,0 +1,1 @@
+function r(e){chrome.storage.local.set(e,()=>{console.log("保存成功")})}async function t(e){try{return await chrome.storage.local.get(e)}catch{return null}}async function a(e){try{return await chrome.storage.local.remove(e),!0}catch{return!1}}async function c(){try{return await chrome.storage.local.clear(),!0}catch{return!1}}const n={set:r,get:t,remove:a,clear:c};export{n as s};
