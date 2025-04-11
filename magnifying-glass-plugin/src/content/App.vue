@@ -3,11 +3,15 @@ import { nextTick, onMounted, ref } from 'vue'
 import Cursor from './components/Cursor.vue'
 import Glass from './components/Glass.vue'
 const isShow = ref(false)
+const cursorBgColor = ref('black')
 const cursorY = ref(0)
 const cursorX = ref(0)
 function handleMessage(message: any): boolean | undefined {
-    if(message.type ==='clickPlugin'){
+    if(message.type ==='operationPlugin'){
         isShow.value = !isShow.value
+    }else {
+        console.log('右键切换颜色')
+        cursorBgColor.value = message.type
     }
     return
 }
@@ -27,7 +31,7 @@ onMounted(async()=>{
 </script>
 
 <template>
-    <Cursor v-if="!isShow" :cursor-x="cursorX" :cursor-y="cursorY"></Cursor>
+    <Cursor v-if="!isShow" :cursor-x="cursorX" :cursor-y="cursorY" :style="{backgroundColor:cursorBgColor}"></Cursor>
     <Glass v-else @close="isShow = false" :cursor-x="cursorX" :cursor-y="cursorY"></Glass>
 </template>
 

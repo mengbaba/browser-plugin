@@ -7,11 +7,15 @@ const _sfc_main = /* @__PURE__ */ _defineComponent({
   setup(__props, { expose: __expose }) {
     __expose();
     const isShow = ref(false);
+    const cursorBgColor = ref("black");
     const cursorY = ref(0);
     const cursorX = ref(0);
     function handleMessage(message) {
-      if (message.type === "clickPlugin") {
+      if (message.type === "operationPlugin") {
         isShow.value = !isShow.value;
+      } else {
+        console.log("\u53F3\u952E\u5207\u6362\u989C\u8272");
+        cursorBgColor.value = message.type;
       }
       return;
     }
@@ -26,18 +30,19 @@ const _sfc_main = /* @__PURE__ */ _defineComponent({
         isShow.value = false;
       });
     });
-    const __returned__ = { isShow, cursorY, cursorX, handleMessage, Cursor, Glass };
+    const __returned__ = { isShow, cursorBgColor, cursorY, cursorX, handleMessage, Cursor, Glass };
     Object.defineProperty(__returned__, "__isScriptSetup", { enumerable: false, value: true });
     return __returned__;
   }
 });
-import { openBlock as _openBlock, createBlock as _createBlock } from "/vendor/.vite-deps-vue.js__v--39ec6ed7.js";
+import { normalizeStyle as _normalizeStyle, openBlock as _openBlock, createBlock as _createBlock } from "/vendor/.vite-deps-vue.js__v--39ec6ed7.js";
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   return !$setup.isShow ? (_openBlock(), _createBlock($setup["Cursor"], {
     key: 0,
     "cursor-x": $setup.cursorX,
-    "cursor-y": $setup.cursorY
-  }, null, 8, ["cursor-x", "cursor-y"])) : (_openBlock(), _createBlock($setup["Glass"], {
+    "cursor-y": $setup.cursorY,
+    style: _normalizeStyle({ backgroundColor: $setup.cursorBgColor })
+  }, null, 8, ["cursor-x", "cursor-y", "style"])) : (_openBlock(), _createBlock($setup["Glass"], {
     key: 1,
     onClose: _cache[0] || (_cache[0] = ($event) => $setup.isShow = false),
     "cursor-x": $setup.cursorX,

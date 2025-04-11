@@ -19,13 +19,14 @@
     "tabs",
     "activeTab",
     "storage",
-    "scripting"
+    "scripting",
+    "contextMenus"
   ],
   "host_permissions": [
     "<all_urls>"
   ],
   "commands": {
-    "clickPlugin": {
+    "operationPlugin": {
       "suggested_key": {
         "default": "Ctrl+B"
       },
