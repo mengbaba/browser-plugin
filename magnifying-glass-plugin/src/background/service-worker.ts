@@ -31,11 +31,11 @@ chrome.tabs.onActivated.addListener((activeInfo) => {
     // 使用 tabId 获取标签页信息
     chrome.tabs.get(activeInfo.tabId, (tab) => {
         if (tab.id) {
-            chrome.scripting.executeScript({
-                target: { tabId: tab.id },
-                //@ts-ignore
-                files: [import.meta.env.DEV ? 'src/content/content.ts-loader.js' : 'assets/content.ts-loader.js']
-            });
+            // chrome.scripting.executeScript({
+            //     target: { tabId: tab.id },
+            //     //@ts-ignore
+            //     files: [import.meta.env.DEV ? 'src/content/content.ts-loader.js' : 'assets/content.ts-loader.js']
+            // });
         }
     });
 });

@@ -38,11 +38,11 @@ onMounted(async()=>{
             }
         })
 
-        window.addEventListener('beforeunload',(e)=>{
-            e.preventDefault()
-            e.returnValue = ''
-            isShow.value = false
-        })
+        // window.addEventListener('beforeunload',(e)=>{
+        //     e.preventDefault()
+        //     e.returnValue = ''
+        //     isShow.value = false
+        // })
     })
 
     onUnmounted(()=>{})

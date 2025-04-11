@@ -1,0 +1,27 @@
+{
+  "../../../../../@crx/manifest": {
+    "file": "assets/crx-manifest.js.js",
+    "name": "crx-manifest.js",
+    "src": "../../../../../@crx/manifest",
+    "isEntry": true
+  },
+  "_content.ts-loader.js": {
+    "file": "assets/content.ts-loader.js",
+    "src": "_content.ts-loader.js"
+  },
+  "src/background/service-worker.ts": {
+    "file": "assets/service-worker.ts.js",
+    "name": "service-worker.ts",
+    "src": "src/background/service-worker.ts",
+    "isEntry": true
+  },
+  "src/content/content.ts": {
+    "file": "assets/content.ts.js",
+    "name": "content.ts",
+    "src": "src/content/content.ts",
+    "isEntry": true,
+    "css": [
+      "assets/content.css"
+    ]
+  }
+}

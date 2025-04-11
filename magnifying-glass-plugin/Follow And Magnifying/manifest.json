@@ -1,0 +1,64 @@
+{
+  "manifest_version": 3,
+  "name": "Follow And Magnifying",
+  "version": "1.0.0",
+  "description": "A  browser mouse follow and magnifying glass plugin",
+  "action": {
+    "default_icon": "src/assets/g.png"
+  },
+  "icons": {
+    "16": "src/assets/g.png",
+    "32": "src/assets/g.png",
+    "128": "src/assets/g.png"
+  },
+  "background": {
+    "service_worker": "service-worker-loader.js",
+    "type": "module"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "storage",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content/content.ts-loader.js"
+      ],
+      "css": [
+        "src/content/inject.css"
+      ],
+      "all_frames": true,
+      "run_at": "document_end"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/content/inject.ts",
+        "src/content/inject.css"
+      ],
+      "matches": [
+        "<all_urls>"
+      ],
+      "use_dynamic_url": true
+    },
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "resources": [
+        "**/*",
+        "*"
+      ],
+      "use_dynamic_url": false
+    }
+  ]
+}
