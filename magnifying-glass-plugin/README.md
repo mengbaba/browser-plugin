@@ -1,5 +1,18 @@
-# Vue 3 + TypeScript + Vite
+# 插件介绍
+```
+ 此插件主要解决在游览器中无法快速定位鼠标，以及字体太小需要放大
+ 1.默认功能 鼠标跟随小球，右键可调整小球背景颜色
+ 2.点击插件图标/control+b 开启放大镜，随意点击和按键可关闭
+```
+## 使用
+- 谷歌打开扩展程序 开启开发者模式
+- 点击 加载已解压的扩展程序 找到打包好的 **Follow And Magnifying**目录 进行添加即可
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## 工程化
+- 使用vue3搭建界面
+- ts 开发
+- vite + crxjs 实现本地实时调试和打包
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+
+
+
